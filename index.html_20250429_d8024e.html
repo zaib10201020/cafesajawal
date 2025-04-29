@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Sajawal Sweets - میٹھائی کی آن لائن خریداری</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --sweet-pink: #FF6B8B;
+            --mint-green: #06D6A0;
+            --golden: #FFD700;
+            --cream: #FFF8E1;
+        }
+        body {
+            font-family: 'Nastaliq', 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--cream);
+            margin: 0;
+            padding: 0;
+            color: #5A3E36;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--saffron), var(--sweet-pink));
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--golden);
+        }
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 100;
+            animation: pulse 1.5s infinite;
+            transition: all 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .order-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-top: 30px;
+            border: 3px solid var(--mint-green);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: var(--saffron);
+            font-size: 1.1rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #FFD166;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: #FFF8E1;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--mint-green);
+            outline: none;
+            box-shadow: 0 0 10px rgba(6, 214, 160, 0.3);
+        }
+        button {
+            background: linear-gradient(to right, var(--saffron), var(--sweet-pink));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            display: block;
+            margin: 30px auto 0;
+            width: 80%;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+        }
+        .sweet-item {
+            border: 2px dashed var(--golden);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 214, 102, 0.1);
+            transition: all 0.3s;
+        }
+        .sweet-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f0f7f0, #e3f2e3);
+            border-radius: 20px;
+            margin-top: 30px;
+            border: 3px solid var(--mint-green);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .payment-success {
+            background: linear-gradient(135deg, #e3f2e3, #d4edda);
+            color: #155724;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+            border: 2px solid #06D6A0;
+        }
+        .sweet-icon {
+            color: var(--saffron);
+            margin-left: 10px;
+            font-size: 1.5rem;
+        }
+        .price-tag {
+            background-color: var(--sweet-pink);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+        .quantity-input {
+            width: 70px;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid var(--saffron);
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .rupee-icon {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            header {
+                padding: 15px 0;
+            }
+            .order-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-candy-cane"></i> Cafe Sajawal Sweets
+        </div>
+        <p>خالص دودھ سے تیار میٹھائیوں کا بہترین انتخاب</p>
+    </header>
+
+    <div class="container">
+        <div class="order-form" id="order-form">
+            <h2 style="color: var(--saffron); text-align: center; margin-bottom: 30px;">
+                <i class="fas fa-shopping-cart sweet-icon"></i> اپنا آرڈر دیں
+            </h2>
+            
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user sweet-icon"></i> آپ کا نام</label>
+                <input type="text" id="name" placeholder="مثال: احمد رضا">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone sweet-icon"></i> فون نمبر</label>
+                <input type="tel" id="phone" placeholder="03XX1234567">
+            </div>
+            
+            <div class="form-group">
+                <label for="address"><i class="fas fa-map-marker-alt sweet-icon"></i> پتہ</label>
+                <textarea id="address" rows="3" placeholder="مکمل پتہ درج کریں"></textarea>
+            </div>
+            
+            <h3 style="color: var(--saffron); border-bottom: 2px dashed var(--golden); padding-bottom: 10px;">
+                <i class="fas fa-ice-cream sweet-icon"></i> میٹھائیوں کا انتخاب کریں
+            </h3>
+            
+            <div class="sweet-item">
+                <div>
+                    <h4>گلاب جامن (6 پیس)</h4>
+                    <p>خالص دودھ اور مخصوص مصالحوں سے تیار</p>
+                    <span class="price-tag"><span class="rupee-icon">Rs.</span> 600</span>
+                </div>
+                <input type="number" min="0" value="0" class="quantity-input" data-price="600">
+            </div>
+            
+            <div class="sweet-item">
+                <div>
+                    <h4>رس گلے (6 پیس)</h4>
+                    <p>خالص دودھ سے تیار، نرم و گداز</p>
+                    <span class="price-tag"><span class="rupee-icon">Rs.</span> 550</span>
+                </div>
+                <input type="number" min="0" value="0" class="quantity-input" data-price="550">
+            </div>
+            
+            <div class="sweet-item">
+                <div>
+                    <h4>برفی (1 کلو)</h4>
+                    <p>کشمش، پستہ اور بادام سے سجی</p>
+                    <span class="price-tag"><span class="rupee-icon">Rs.</span> 800</span>
+                </div>
+                <input type="number" min="0" value="0" class="quantity-input" data-price="800">
+            </div>
+            
+            <div class="sweet-item">
+                <div>
+                    <h4>کھویہ (500 گرام)</h4>
+                    <p>روایتی ذائقہ، خشک میوہ جات سے مزین</p>
+                    <span class="price-tag"><span class="rupee-icon">Rs.</span> 450</span>
+                </div>
+                <input type="number" min="0" value="0" class="quantity-input" data-price="450">
+            </div>
+            
+            <button id="submit-order"><i class="fas fa-paper-plane"></i> آرڈر جمع کروائیں</button>
+        </div>
+        
+        <div class="confirmation" id="confirmation">
+            <h2 style="color: var(--mint-green);">
+                <i class="fas fa-check-circle"></i> آپ کا آرڈر کامیابی سے جمع ہو گیا!
+            </h2>
+            <div style="background-color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <p id="order-details" style="font-size: 1.1rem; line-height: 2;"></p>
+                <p id="order-total" style="font-size: 1.3rem; font-weight: bold; margin-top: 15px;"></p>
+            </div>
+            <button id="make-payment"><i class="fas fa-rupee-sign"></i> ادائیگی کریں</button>
+            
+            <div class="payment-success" id="payment-success">
+                <h3><i class="fas fa-check-circle"></i> ادائیگی کی تصدیق ہو گئی!</h3>
+                <p><i class="fas fa-check"></i> آپ کو ایک تصدیقی پیغام واٹس ایپ پر بھیج دیا گیا ہے</p>
+                <p><i class="fas fa-check"></i> آپ کا آرڈر تیاری کے لیے بھج دیا گیا ہے</p>
+                <p style="margin-top: 20px; font-weight: bold;">
+                    Cafe Sajawal Sweets کا انتخاب کرنے کا شکریہ!
+                </p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3 style="color: var(--saffron);"><i class="fas fa-headset"></i> رابطہ کریں</h3>
+            <p><i class="fas fa-phone sweet-icon"></i> <a href="tel:03008392864" style="color: var(--saffron); text-decoration: none;">0300-8392864</a></p>
+            <p><i class="fab fa-whatsapp sweet-icon" style="color: #25D366;"></i> <a href="https://wa.me/923008392864" style="color: #25D366; text-decoration: none;">WhatsApp پر رابطہ کریں</a></p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923008392864?text=میں Cafe Sajawal Sweets سے میٹھائی آرڈر کرنا چاہتا ہوں" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Set today's date as default
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+        document.getElementById('date').valueAsDate = tomorrow;
+        
+        document.getElementById('submit-order').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            
+            if(!name || !phone || !address) {
+                alert('براہ کرم تمام ضروری معلومات درج کریں');
+                return;
+            }
+            
+            // Calculate total
+            let total = 0;
+            const orderItems = [];
+            const quantities = document.querySelectorAll('.quantity-input');
+            
+            quantities.forEach(qty => {
+                const quantity = parseInt(qty.value);
+                if(quantity > 0) {
+                    const price = parseInt(qty.dataset.price);
+                    total += quantity * price;
+                    
+                    // Get sweet name from previous sibling
+                    const sweetName = qty.parentElement.querySelector('h4').textContent;
+                    const sweetPrice = qty.parentElement.querySelector('.price-tag').textContent;
+                    orderItems.push({
+                        name: sweetName,
+                        quantity: quantity,
+                        price: sweetPrice.replace('Rs.', '').trim()
+                    });
+                }
+            });
+            
+            if(total === 0) {
+                alert('براہ کرم کم از کم ایک میٹھائی کا انتخاب کریں');
+                return;
+            }
+            
+            // Show confirmation
+            let orderDetails = `
+                <strong><i class="fas fa-user sweet-icon"></i> نام:</strong> ${name}<br>
+                <strong><i class="fas fa-phone sweet-icon"></i> فون:</strong> ${phone}<br>
+                <strong><i class="fas fa-map-marker-alt sweet-icon"></i> پتہ:</strong> ${address}<br><br>
+                <strong><i class="fas fa-list sweet-icon"></i> آرڈر کی تفصیل:</strong><br>
+            `;
+            
+            orderItems.forEach(item => {
+                orderDetails += `${item.name} - ${item.quantity} x Rs. ${item.price} = Rs. ${item.quantity * parseInt(item.price)}<br>`;
+            });
+            
+            document.getElementById('order-details').innerHTML = orderDetails;
+            document.getElementById('order-total').innerHTML = `<i class="fas fa-rupee-sign sweet-icon"></i> کل رقم: Rs. ${total}`;
+            
+            document.getElementById('order-form').style.display = 'none';
+            document.getElementById('confirmation').style.display = 'block';
+        });
+        
+        document.getElementById('make-payment').addEventListener('click', function() {
+            const btn = this;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ادائیگی جاری ہے...';
+            btn.disabled = true;
+            
+            // Simulate payment processing (3 seconds)
+            setTimeout(() => {
+                document.getElementById('payment-success').style.display = 'block';
+                btn.style.display = 'none';
+                
+                // Get customer details
+                const phone = document.getElementById('phone').value;
+                const name = document.getElementById('name').value;
+                const total = document.getElementById('order-total').textContent;
+                
+                // In a real app, this would send to your backend
+                console.log(`Payment successful for ${name} (${phone}). Total: ${total}`);
+                console.log(`WhatsApp confirmation would be sent to: ${phone}`);
+                
+                // Simulate opening WhatsApp with confirmation
+                setTimeout(() => {
+                    window.open(`https://wa.me/${phone}?text=Cafe%20Sajawal%20Sweets%20آرڈر%20تصدیق%0A${name}%20صاحب،%20آپ%20کا%20آرڈر%20کامیابی%20سے%20درج%20ہو%20گیا%20ہے۔%20کل%20رقم%20${total}`, '_blank');
+                }, 1000);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
