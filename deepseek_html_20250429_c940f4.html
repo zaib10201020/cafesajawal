@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Cafe Sajawal - آن لائن بکنگ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #FFD166;
+            --accent: #06D6A0;
+            --dark: #5A3E36;
+            --light: #F9F3E9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .booking-form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            border: 2px solid var(--accent);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .menu-item {
+            border: 1px dashed var(--secondary);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 214, 102, 0.1);
+        }
+        .confirmation {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f7f0, #e3f2e3);
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 2px solid var(--accent);
+        }
+        .payment-success {
+            background: linear-gradient(135deg, #e3f2e3, #d4edda);
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        .sweet-icon {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-candy-cane sweet-icon"></i> Sweet Cafe Sajawal</h1>
+        <p>آن لائن میٹھائی آرڈر اور میز بکنگ</p>
+    </header>
+
+    <div class="container">
+        <div class="booking-form" id="booking-form">
+            <h2 style="color: var(--primary);"><i class="fas fa-calendar-alt sweet-icon"></i> اپنی بکنگ کریں</h2>
+            
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user sweet-icon"></i> آپ کا نام</label>
+                <input type="text" id="name" placeholder="اپنا نام درج کریں">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone sweet-icon"></i> فون نمبر</label>
+                <input type="tel" id="phone" placeholder="03XX1234567">
+            </div>
+            
+            <div class="form-group">
+                <label for="date"><i class="fas fa-calendar-day sweet-icon"></i> تاریخ</label>
+                <input type="date" id="date">
+            </div>
+            
+            <div class="form-group">
+                <label for="time"><i class="fas fa-clock sweet-icon"></i> وقت</label>
+                <select id="time">
+                    <option value="09:00">صبح 9:00</option>
+                    <option value="11:00">صبح 11:00</option>
+                    <option value="13:00">دوپہر 1:00</option>
+                    <option value="15:00">سہ پہر 3:00</option>
+                    <option value="17:00">شام 5:00</option>
+                    <option value="19:00">شام 7:00</option>
+                    <option value="21:00">رات 9:00</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="guests"><i class="fas fa-users sweet-icon"></i> مہمانوں کی تعداد</label>
+                <input type="number" id="guests" min="1" max="20" value="2">
+            </div>
+            
+            <h3 style="color: var(--primary);"><i class="fas fa-ice-cream sweet-icon"></i> میٹھائیوں کا انتخاب کریں</h3>
+            
+            <div class="menu-item">
+                <div>
+                    <h4>گلاب جامن (6 پیس)</h4>
+                    <p>روایتی گلاب جامن - ₹600</p>
+                </div>
+                <input type="number" min="0" value="0" class="item-quantity" data-price="600" style="width: 60px;">
+            </div>
+            
+            <div class="menu-item">
+                <div>
+                    <h4>رس گلے (6 پیس)</h4>
+                    <p>خالص دودھ سے تیار - ₹550</p>
+                </div>
+                <input type="number" min="0" value="0" class="item-quantity" data-price="550" style="width: 60px;">
+            </div>
+            
+            <div class="menu-item">
+                <div>
+                    <h4>برفی (1 کلو)</h4>
+                    <p>مختلف ذائقوں میں دستیاب - ₹800</p>
+                </div>
+                <input type="number" min="0" value="0" class="item-quantity" data-price="800" style="width: 60px;">
+            </div>
+            
+            <button id="submit-booking"><i class="fas fa-paper-plane"></i> بکنگ جمع کروائیں</button>
+        </div>
+        
+        <div class="confirmation" id="confirmation">
+            <h2 style="color: var(--accent);"><i class="fas fa-check-circle"></i> آپ کی بکنگ کامیابی سے جمع ہو گئی!</h2>
+            <p id="booking-details"></p>
+            <p id="total-amount" style="font-weight: bold; margin: 15px 0;"></p>
+            <button id="make-payment"><i class="fas fa-rupee-sign"></i> ادائیگی کریں</button>
+            
+            <div class="payment-success" id="payment-success">
+                <h3><i class="fas fa-check-circle"></i> ادائیگی کی تصدیق ہو گئی!</h3>
+                <p>آپ کو ایک تصدیقی پیغام واٹس ایپ پر بھیج دیا گیا ہے۔</p>
+                <p>شکریہ! Sweet Cafe Sajawal کا انتخاب کرنے کا۔</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923001234567?text=میں Sweet Cafe Sajawal سے رابطہ کرنا چاہتا ہوں" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Set default date to today
+        document.getElementById('date').valueAsDate = new Date();
+        
+        document.getElementById('submit-booking').addEventListener('click', function() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            if(!name || !phone) {
+                alert('براہ کرم نام اور فون نمبر درج کریں');
+                return;
+            }
+            
+            // Calculate total
+            let total = 0;
+            const quantities = document.querySelectorAll('.item-quantity');
+            quantities.forEach(qty => {
+                const quantity = parseInt(qty.value);
+                const price = parseInt(qty.dataset.price);
+                total += quantity * price;
+            });
+            
+            if(total === 0) {
+                alert('براہ کرم کم از کم ایک میٹھائی کا انتخاب کریں');
+                return;
+            }
+            
+            // Show confirmation
+            document.getElementById('booking-details').innerHTML = `
+                ${name}، آپ کی بکنگ ${document.getElementById('date').value} کو 
+                ${document.getElementById('time').value} بجے ${document.getElementById('guests').value} 
+                افراد کے لیے جمع ہو گئی ہے۔
+            `;
+            
+            document.getElementById('total-amount').textContent = `کل رقم: ₹${total}`;
+            
+            document.getElementById('booking-form').style.display = 'none';
+            document.getElementById('confirmation').style.display = 'block';
+        });
+        
+        document.getElementById('make-payment').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ادائیگی جاری ہے...';
+            this.disabled = true;
+            
+            // Simulate payment processing (3 seconds)
+            setTimeout(() => {
+                document.getElementById('payment-success').style.display = 'block';
+                this.style.display = 'none';
+                
+                // Simulate WhatsApp message
+                const phone = document.getElementById('phone').value;
+                const name = document.getElementById('name').value;
+                const total = document.getElementById('total-amount').textContent;
+                
+                // In a real app, you would send this to your backend
+                console.log(`WhatsApp message would be sent to ${phone}: 
+                    Sweet Cafe Sajawal: ${name}، آپ کی ادائیگی ₹${total.split('₹')[1]} کامیابی سے ہو گئی ہے! شکریہ!`);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
